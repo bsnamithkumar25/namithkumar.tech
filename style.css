@@ -31,6 +31,17 @@ body {
     }
 }
 
+@keyframes slideIn {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 #me {
     background-color: rgba(255, 255, 255, 0.1);
     float: left;
@@ -46,17 +57,6 @@ body {
     animation: slideIn 1s ease-in-out;
 }
 
-@keyframes slideIn {
-    0% {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
 #content {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
@@ -68,6 +68,8 @@ body {
     width: calc(100% - 270px);
     min-width: 600px;
     animation: slideIn 1s ease-in-out;
+    opacity: 0; /* Start with hidden opacity */
+    animation-fill-mode: forwards; /* Keep the final state of the animation */
 }
 
 #nav1 {
