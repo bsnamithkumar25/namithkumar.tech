@@ -1,24 +1,24 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const links = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section');
+// JavaScript to handle section navigation and visibility
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('.section');
 
-    links.forEach(link => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-            sections.forEach(section => {
-                section.classList.add('hidden');
-                section.classList.remove('visible');
-            });
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
 
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.classList.remove('hidden');
-                target.classList.add('visible');
+        const targetId = this.getAttribute('href').substring(1);
+        sections.forEach(section => {
+            if (section.id === targetId) {
+                section.classList.remove('hidden');
+                section.classList.add('visible');
             } else {
-                console.error('Target section not found:', this.getAttribute('href'));
+                section.classList.remove('visible');
+                section.classList.add('hidden');
             }
         });
     });
-    sections[0].classList.remove('hidden');
-    sections[0].classList.add('visible');
 });
+
+// Automatically show the first section on page load
+sections[0].classList.remove('hidden');
+sections[0].classList.add('visible');
