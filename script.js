@@ -1,24 +1,18 @@
-// JavaScript to handle section navigation and visibility
-const navLinks = document.querySelectorAll('.nav-link');
-const sections = document.querySelectorAll('.section');
-
-navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
 
-        const targetId = this.getAttribute('href').substring(1);
-        sections.forEach(section => {
-            if (section.id === targetId) {
-                section.classList.remove('hidden');
-                section.classList.add('visible');
-            } else {
-                section.classList.remove('visible');
-                section.classList.add('hidden');
-            }
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
         });
     });
 });
 
-// Automatically show the first section on page load
-sections[0].classList.remove('hidden');
-sections[0].classList.add('visible');
+const contactLink = document.querySelector('a[href="contact.html"]');
+if (contactLink) {
+    contactLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        alert("Feel free to reach out via email or social media!");
+        window.location.href = "contact.html"; 
+    });
+}
